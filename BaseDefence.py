@@ -54,7 +54,7 @@ while isRunning:
 
     
     #Your code goes here
-    win.fill((0,0,0))
+    win.fill((36,220,106))
     if wPressed == True:
         playerY = playerY - 5
     if aPressed == True:
@@ -73,7 +73,7 @@ while isRunning:
 
     index=0
     for enemy in enemies:
-        pygame.draw.circle(win, (0,0,255),enemy,20)
+        pygame.draw.circle(win, (255,73,8),enemy,20)
         if -30<(enemy[0]-player[0])<30 and -30<(enemy[1]-player[1])<30:
             enemies.remove(enemy)
             #Remove the enemy
@@ -84,16 +84,21 @@ while isRunning:
         index+=1
     
     player = (playerX,playerY)
-    pygame.draw.rect(win, (255,255,255),(int(w/2)-52,int(h/2)-77,104,29),4)
-    pygame.draw.rect(win, (192,192,192),(int(w/2)-50,int(h/2)-75,int(hp/10),25))
-    pygame.draw.circle(win,(0,255,0),(int(w/2),int(h/2)),40)
-    pygame.draw.circle(win,(255,0,0),player,25)
+    #Outer rim
+    pygame.draw.rect(win, (255,8,16),(int(w/2)-52,int(h/2)-77,104,29),4)
+    #Health bar
+    pygame.draw.rect(win, (255,41,62),(int(w/2)-50,int(h/2)-75,int(hp/10),25))
+    #Base
+    pygame.draw.circle(win,(255,220,46),(int(w/2),int(h/2)),40)
+    #Fighter
+    pygame.draw.circle(win,(20,45,255),player,25)
 
 
     if hp <= 0:
         isRunning = False
+        print("You lost!")
 
-    pygame.display.set_caption("My First Game ("+str(int(hp/10))+")")
+    pygame.display.set_caption("My First Game ("+str(int(hp/10))+"% health)")
 
     
     #Event loop here
